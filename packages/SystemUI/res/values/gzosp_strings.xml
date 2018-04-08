@@ -42,4 +42,8 @@
     <string name="tuner_keyguard_show_battery_temp_title">Show battery temperature</string>
     <string name="tuner_keyguard_show_battery_temp_summary">Show battery temperature value</string>
 
+    <!-- Smart Pixels QS Tile -->
+    <string name="quick_settings_smart_pixels">Smart Pixels</string>
+    <string name="quick_settings_smart_pixels_on_power_save">Auto-enabled Smart Pixels</string>
+
 </resources>
