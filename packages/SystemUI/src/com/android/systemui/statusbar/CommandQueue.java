@@ -1142,6 +1142,7 @@ public class CommandQueue extends IStatusBar.Stub implements CallbackController<
                 case MSG_SET_BLOCKED_GESTURAL_NAVIGATION:
                     for (int i = 0; i < mCallbacks.size(); i++) {
                         mCallbacks.get(i).setBlockedGesturalNavigation((Boolean) msg.obj);
+                    }
                     break;
                 case MSG_TOGGLE_CAMERA_FLASH:
                     for (int i = 0; i < mCallbacks.size(); i++) {
