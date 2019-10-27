@@ -59,4 +59,6 @@
     <string name="screenrecord_notif_error">Unable to record screen</string>
     <string name="notification_channel_screenrecord">Screenrecords</string>
 
+    <!-- Screen recorder -->
+    <string name="screenrecord_stopdot_label">Show stop dot</string>
 </resources>
