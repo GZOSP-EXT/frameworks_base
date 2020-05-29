@@ -7431,6 +7431,9 @@ message MetricsEvent {
     // END OF AOSP CONSTANTS
 
     // GZOSP constants
+    TESLA = 3000;
+
+    // GZOSP constants
     GZOSP = 4000;
   }
 }
