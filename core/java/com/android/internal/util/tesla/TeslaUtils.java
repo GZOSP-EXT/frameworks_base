@@ -16,6 +16,7 @@
 
 package com.android.internal.util.tesla;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -44,7 +45,7 @@ import com.android.internal.statusbar.IStatusBarService;
 import java.util.Locale;
 import java.util.Arrays;
 
-public class CrUtils {
+public class TeslaUtils {
 
     public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
     public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
@@ -219,5 +220,14 @@ public class CrUtils {
         // Default to celsius if can't access MCC
         return !TextUtils.isEmpty(networkOperator) && Arrays.asList(mcc).contains(
                 networkOperator.substring(0, /*Filter only 3 digits*/ 3));
+    }
+
+    public static void setComponentState(Context context, String packageName,
+            String componentClassName, boolean enabled) {
+        PackageManager pm  = context.getApplicationContext().getPackageManager();
+        ComponentName componentName = new ComponentName(packageName, componentClassName);
+        int state = enabled ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED :
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
+        pm.setComponentEnabledSetting(componentName, state, PackageManager.DONT_KILL_APP);
     }
 }
