@@ -137,7 +137,15 @@ public class TeslaUtils {
     public static void switchScreenOn(Context context) {
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         if (pm == null) return;
-        pm.wakeUp(SystemClock.uptimeMillis(), "com.android.systemui:CAMERA_GESTURE_PREVENT_LOCK");
+        PowerManager.WakeLock wakeLock = pm.newWakeLock((
+                PowerManager.SCREEN_BRIGHT_WAKE_LOCK |
+                        PowerManager.ACQUIRE_CAUSES_WAKEUP), "wakeup:device");
+        boolean isScreenOn = pm.isScreenOn();
+        /* Wake up the device only when screen is off.
+         * Otherwise don't bother to do anything. */
+        if (!wakeLock.isHeld() && !isScreenOn) {
+            wakeLock.acquire();
+        }
     }
 
     public static void toggleCameraFlash() {
@@ -165,6 +173,7 @@ public class TeslaUtils {
             }
         }
 
+        // Toggle flashlight
         public static void toggleCameraFlash() {
             IStatusBarService service = getStatusBarService();
             if (service != null) {
